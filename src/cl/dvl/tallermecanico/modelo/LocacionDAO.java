@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cl.dvl.tallermecanico.modelo;
 
 import cl.dvl.tallermecanico.interfaz.Comuna;
@@ -20,12 +16,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //Aqui van todas las querys para obtener datos de comunas y regiones.
+
 public class LocacionDAO {
-    
-    
+
     private Conexion conn = new Conexion();
+
     /**
      * Este método obtiene las regiones desde la BD y las guarda en una lista
+     *
      * @return List<Region>
      */
     public List<Region> getRegion() {
@@ -49,7 +47,7 @@ public class LocacionDAO {
         }
         return listaRegiones;
     }
-      
+
     public List<Comuna> getComunaByIdRegion(int id) {
         List<Comuna> listaComunas = new LinkedList<>();
         ResultSet rs;
@@ -65,22 +63,17 @@ public class LocacionDAO {
                 + "join comuna co on co.ID_CIUDAD = c.ID_CIUDAD "
                 + "where r.id_region = ?";
         try {
-            //System.out.println(query);
             ps = con.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            
+
             while (rs.next()) { //salta a la siguiente linea de resultado
-                com = new Comuna(rs.getInt("ID_COMUNA"),rs.getString("COMUNA"));
+                com = new Comuna(rs.getInt("ID_COMUNA"), rs.getString("COMUNA"));
                 listaComunas.add(com);
-                //System.out.println("so com.getc"+com.getComuna());
             }
         } catch (SQLException ex) {
             Logger.getLogger(LocacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaComunas;
     }
-
-    
-    
 }

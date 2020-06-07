@@ -236,23 +236,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentAdded
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-    MenuClientes menuCli = new MenuClientes();
-    this.MenuMostrar.add(menuCli);
-    menuCli.show();
-//        try {
-//            menuCli.setMaximumSize(dmnsn);
-//        } catch (Exception e) {
-//            Logger.getLogger(menuPrincipal.class.getName()).log(Level.SEVERE, null, e);
-//        }
-//        FormularioClientes clientes = new FormularioClientes();
-//        this.MenuMostrar.add(clientes);
-//        try {
-//            clientes.setMaximum(true);
-//        } catch (PropertyVetoException ex) {
-//            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        clientes.show();
-
+        MenuClientes menuCli = new MenuClientes();
+        MenuMostrar.add(menuCli);
+        menuCli.show();
+        try {
+            menuCli.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
