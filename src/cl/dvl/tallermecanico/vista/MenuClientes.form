@@ -118,11 +118,8 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtNombre" pref="281" max="32767" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="txtRut" min="-2" pref="114" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="txtNombre" pref="282" max="32767" attributes="0"/>
+                                              <Component id="txtRut" min="-2" pref="114" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -133,7 +130,7 @@
                                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lblComuna" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
@@ -176,9 +173,9 @@
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblApPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtApPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblComuna" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cbxComunas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtApPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -265,6 +262,10 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbxRegiones">
                   <Properties>
+                    <Property name="editable" type="boolean" value="true"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>
@@ -278,6 +279,7 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbxComunas">
                   <Properties>
+                    <Property name="editable" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>

@@ -140,12 +140,15 @@ public class MenuClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        cbxRegiones.setEditable(true);
+        cbxRegiones.setForeground(new java.awt.Color(255, 255, 255));
         cbxRegiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxRegionesActionPerformed(evt);
             }
         });
 
+        cbxComunas.setEditable(true);
         cbxComunas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxComunasActionPerformed(evt);
@@ -213,17 +216,15 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                                     .addComponent(lblRut))
                                 .addGap(60, 60, 60)
                                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                                    .addGroup(MenuIngresarLayout.createSequentialGroup()
-                                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuIngresarLayout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(lblDireccion)
                                 .addGap(43, 43, 43))
                             .addGroup(MenuIngresarLayout.createSequentialGroup()
-                                .addGap(112, 112, 112)
+                                .addGap(111, 111, 111)
                                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblComuna)
                                     .addComponent(lblCorreo)
@@ -256,9 +257,9 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApPaterno)
-                    .addComponent(txtApPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblComuna)
-                    .addComponent(cbxComunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxComunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApMaterno)
