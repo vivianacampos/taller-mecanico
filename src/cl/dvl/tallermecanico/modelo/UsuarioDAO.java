@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Vivita
- */
 public class UsuarioDAO {
 
     private Conexion conn = new Conexion();
@@ -31,9 +27,10 @@ public class UsuarioDAO {
         Usuario user = new Usuario();
         try {
             st = conn.getCon().createStatement();
-            rs = st.executeQuery("Select * from usuario where usuario='" + usuario + "' and password='"+password+"'");
-            System.out.println("Select * from usuario where usuario='" + usuario + "' and password='"+password+"'");
+            rs = st.executeQuery("Select * from usuario where usuario='" +usuario +"' and password='"+password+"'");
+            //System.out.println("Select * from usuario where usuario='" + usuario + " and password="+password+"'");
             while (rs.next()) {
+                
                 user = new Usuario(rs.getInt("ID_USUARIO"), rs.getString("USUARIO"), rs.getString("PASSWORD"), rs.getString("PERFIL"));
                 System.out.println(user);
             }

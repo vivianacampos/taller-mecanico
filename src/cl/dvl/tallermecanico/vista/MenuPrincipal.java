@@ -11,6 +11,8 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -25,6 +27,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+       // MenuMostrar.setBorder();
     }
 
     /**
@@ -122,14 +125,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         btnOOSS.setText("OOSS");
+        btnOOSS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOOSSActionPerformed(evt);
+            }
+        });
 
-        btnVehiculo.setText("Vehículo");
+        btnVehiculo.setText("Vehículos");
+        btnVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVehiculoActionPerformed(evt);
+            }
+        });
 
         btnRepuestos.setText("Repuestos");
+        btnRepuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRepuestosActionPerformed(evt);
+            }
+        });
 
         btnSucursal.setText("Sucursal");
+        btnSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSucursalActionPerformed(evt);
+            }
+        });
 
         btnFactura.setText("Factura");
+        btnFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturaActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -261,6 +289,61 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnOOSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOOSSActionPerformed
+        MenuOOSS ooss = new MenuOOSS();
+        MenuMostrar.add(ooss);
+        ooss.show();
+        try {
+            ooss.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnOOSSActionPerformed
+
+    private void btnVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculoActionPerformed
+        MenuVehiculos vehiculos = new MenuVehiculos();
+        MenuMostrar.add(vehiculos);
+        vehiculos.show();
+        try {
+            vehiculos.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnVehiculoActionPerformed
+
+    private void btnRepuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepuestosActionPerformed
+        MenuRepuestos repuestos = new MenuRepuestos();
+        MenuMostrar.add(repuestos);
+        repuestos.show();
+        try {
+            repuestos.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRepuestosActionPerformed
+
+    private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
+        MenuSucursal sucursal = new MenuSucursal();
+        MenuMostrar.add(sucursal);
+        sucursal.show();
+        try {
+            sucursal.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSucursalActionPerformed
+
+    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
+        MenuFactura factura = new MenuFactura();
+        MenuMostrar.add(factura);
+        factura.show();
+        try {
+            factura.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnFacturaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -286,10 +369,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        try {
+            //</editor-fold>
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuPrincipal().setVisible(true);

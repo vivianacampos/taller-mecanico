@@ -18,8 +18,9 @@ import java.sql.Statement;
 public class ClienteDAO {
     private Conexion conn = new Conexion();
 
-    public void insertCliente(int idComuna, String nombre, String apellidoP, String apellidoM, String rut, String direccion, int telefono, int celular, String correo) {
+    public boolean insertCliente(int idComuna, String nombre, String apellidoP, String apellidoM, String rut, String direccion, int telefono, int celular, String correo) {
         PreparedStatement ps;
+        boolean executed = false;
 
         String query = "INSERT INTO CLIENTE("
                 + "ID_COMUNA, "
@@ -31,7 +32,8 @@ public class ClienteDAO {
                 + "TELEFONO, "
                 + "CELULAR, "
                 + "CORREO) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
+                System.out.println(query);
         try {
             ps = conn.getCon().prepareStatement(query);
             ps.setInt(1, idComuna);
@@ -43,10 +45,12 @@ public class ClienteDAO {
             ps.setInt(7, telefono);
             ps.setInt(8, celular);
             ps.setString(9, correo);
+            executed = ps.execute();
                         
         } catch (Exception e) {
             System.out.println(e);
         }
+        return executed;
     }
     
 }

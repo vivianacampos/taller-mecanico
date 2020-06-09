@@ -269,26 +269,41 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="OOSS"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOOSSActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVehiculo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Veh&#xed;culo"/>
+            <Property name="text" type="java.lang.String" value="Veh&#xed;culos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVehiculoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRepuestos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Repuestos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRepuestosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSucursal">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sucursal"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSucursalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFactura">
           <Properties>
             <Property name="text" type="java.lang.String" value="Factura"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFacturaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
