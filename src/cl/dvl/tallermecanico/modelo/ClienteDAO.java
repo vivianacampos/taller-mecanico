@@ -52,5 +52,16 @@ public class ClienteDAO {
         }
         return executed;
     }
-    
+    public Cliente modificarCliente(int idComuna, String nombre, String apellidoP, String apellidoM, String rut, String direccion, int telefono, int celular, String correo){
+        PreparedStatement ps;
+        boolean executed = false;
+        String query = ("UPDATE `tallermecanico`.`cliente` SET `APELLIDO_PATERNO` = '?' WHERE (`ID_CLIENTE` = '?');");
+       return null; 
+    }
+    public boolean EliminarCliente(){
+        PreparedStatement ps;
+        boolean executed = false;
+        String query = ("DELETE FROM `tallermecanico`.`cliente` WHERE (`ID_CLIENTE` = '?');");
+        return true;
+    }
 }

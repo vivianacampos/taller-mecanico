@@ -80,6 +80,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         lblDireccion = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -96,7 +97,8 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         chkbDatosC = new javax.swing.JCheckBox();
         chkbTodo = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
-        btnMostrar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -107,8 +109,6 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
 
         setBorder(null);
         setTitle("Clientes");
@@ -172,64 +172,76 @@ public class MenuClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Datos Personales");
+
         javax.swing.GroupLayout MenuIngresarLayout = new javax.swing.GroupLayout(MenuIngresar);
         MenuIngresar.setLayout(MenuIngresarLayout);
         MenuIngresarLayout.setHorizontalGroup(
             MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuIngresarLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(MenuIngresarLayout.createSequentialGroup()
-                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblApMaterno)
-                            .addComponent(lblTelefono)
-                            .addComponent(lblCelular))
-                        .addGap(18, 18, 18)
-                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtApMaterno)
-                            .addComponent(txtTelefono)
-                            .addComponent(txtCelular)))
-                    .addGroup(MenuIngresarLayout.createSequentialGroup()
-                        .addComponent(lblApPaterno)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtApPaterno))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MenuIngresarLayout.createSequentialGroup()
-                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre)
-                            .addComponent(lblRut))
-                        .addGap(60, 60, 60)
-                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuIngresarLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(lblDireccion)
-                        .addGap(43, 43, 43))
-                    .addGroup(MenuIngresarLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblComuna)
-                            .addComponent(lblCorreo)
-                            .addComponent(lblRegion))
-                        .addGap(47, 47, 47)))
-                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbxRegiones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbxComunas, 0, 184, Short.MAX_VALUE)
-                    .addComponent(txtDireccion)
-                    .addComponent(txtCorreo))
-                .addGap(108, 108, 108))
             .addGroup(MenuIngresarLayout.createSequentialGroup()
                 .addGap(250, 250, 250)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(200, 200, 200)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(MenuIngresarLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuIngresarLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MenuIngresarLayout.createSequentialGroup()
+                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(MenuIngresarLayout.createSequentialGroup()
+                                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblApMaterno)
+                                    .addComponent(lblTelefono)
+                                    .addComponent(lblCelular))
+                                .addGap(18, 18, 18)
+                                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtApMaterno)
+                                    .addComponent(txtTelefono)
+                                    .addComponent(txtCelular)))
+                            .addGroup(MenuIngresarLayout.createSequentialGroup()
+                                .addComponent(lblApPaterno)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtApPaterno))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MenuIngresarLayout.createSequentialGroup()
+                                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNombre)
+                                    .addComponent(lblRut))
+                                .addGap(60, 60, 60)
+                                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                                    .addGroup(MenuIngresarLayout.createSequentialGroup()
+                                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuIngresarLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(lblDireccion)
+                                .addGap(43, 43, 43))
+                            .addGroup(MenuIngresarLayout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblComuna)
+                                    .addComponent(lblCorreo)
+                                    .addComponent(lblRegion))
+                                .addGap(47, 47, 47)))
+                        .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbxRegiones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxComunas, 0, 184, Short.MAX_VALUE)
+                            .addComponent(txtDireccion)
+                            .addComponent(txtCorreo))
+                        .addGap(108, 108, 108))))
         );
         MenuIngresarLayout.setVerticalGroup(
             MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuIngresarLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRut)
                     .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +273,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCelular)
                     .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(MenuIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresar)
                     .addComponent(btnLimpiar))
@@ -398,7 +410,14 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnMostrar.setText("Mostrar");
+        btnModificar.setText("Modificar");
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -406,10 +425,12 @@ public class MenuClientes extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(278, 278, 278)
-                .addComponent(btnMostrar)
-                .addGap(227, 227, 227)
+                .addComponent(btnModificar)
+                .addGap(77, 77, 77)
+                .addComponent(btnEliminar)
+                .addGap(77, 77, 77)
                 .addComponent(btnCancelar)
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -432,7 +453,8 @@ public class MenuClientes extends javax.swing.JInternalFrame {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnMostrar))
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar))
                 .addGap(51, 51, 51))
         );
 
@@ -575,32 +597,6 @@ public class MenuClientes extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Listar", jPanel4);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 921, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Modificar", jPanel5);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 921, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Eliminar", jPanel8);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -639,11 +635,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void rbtnRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRutActionPerformed
-       String rut = "";
-       boolean valido = false;
-        if(rbtnRut.isSelected()){
-           
-        }
+      
     }//GEN-LAST:event_rbtnRutActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -693,7 +685,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
         if (idCom != 0) {
             campoVacio = false;
         }
-
+        
         if (campoVacio) {
             JOptionPane.showMessageDialog(this, "LLene todos los campos antes de guardar");
         } else {
@@ -705,6 +697,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
 
             }
         }
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void cbxComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxComunasActionPerformed
@@ -750,7 +743,7 @@ public class MenuClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtApMaternoActionPerformed
 
     private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_txtRutActionPerformed
 public void buscar(){
     if(rbtnRut.isSelected()){
@@ -765,15 +758,28 @@ public void buscar(){
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
+    public void eliminarCliente(){
+        
+    }
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int election = JOptionPane.showOptionDialog(confirmacion, "¿Desea eliminar Cliente?", "Confirmar",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "aceptar");
+        if (election == JOptionPane.YES_OPTION) {
+            
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuIngresar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> cbxComunas;
     private javax.swing.JComboBox<String> cbxRegiones;
     private javax.swing.JCheckBox chkbDatosC;
@@ -784,16 +790,15 @@ public void buscar(){
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;

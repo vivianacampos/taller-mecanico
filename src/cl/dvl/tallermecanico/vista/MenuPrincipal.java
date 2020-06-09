@@ -284,8 +284,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "aceptar");
         if (election == JOptionPane.YES_OPTION) {
             System.exit(0);
-        } else {
-
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
