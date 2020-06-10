@@ -28,7 +28,7 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         grupBuscarOOSS = new javax.swing.ButtonGroup();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tablepaneOOSS = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         lblColor = new javax.swing.JPanel();
         lblPatente = new javax.swing.JLabel();
@@ -61,7 +61,7 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
         lblCelular = new javax.swing.JLabel();
         txtCelular = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        menuDiagnosticosPendientes = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnRealizDiag = new javax.swing.JButton();
@@ -306,7 +306,7 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Recepción", jPanel2);
+        tablepaneOOSS.addTab("Recepción", jPanel2);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,32 +353,32 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Diagnósticos Pendientes");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout menuDiagnosticosPendientesLayout = new javax.swing.GroupLayout(menuDiagnosticosPendientes);
+        menuDiagnosticosPendientes.setLayout(menuDiagnosticosPendientesLayout);
+        menuDiagnosticosPendientesLayout.setHorizontalGroup(
+            menuDiagnosticosPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuDiagnosticosPendientesLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(menuDiagnosticosPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(menuDiagnosticosPendientesLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(btnRealizDiag, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(160, 160, 160))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        menuDiagnosticosPendientesLayout.setVerticalGroup(
+            menuDiagnosticosPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuDiagnosticosPendientesLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(menuDiagnosticosPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRealizDiag)
                     .addComponent(jButton3))
                 .addContainerGap(163, Short.MAX_VALUE))
@@ -390,18 +390,18 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(menuDiagnosticosPendientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuDiagnosticosPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Diagnóstico", jPanel3);
+        tablepaneOOSS.addTab("Diagnóstico", jPanel3);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
@@ -606,7 +606,7 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("OOSS", jPanel6);
+        tablepaneOOSS.addTab("OOSS", jPanel6);
 
         lblBuscarPatente.setText("Buscar Patente:");
 
@@ -668,7 +668,7 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
                 .addGap(57, 57, 57))
         );
 
-        jTabbedPane1.addTab("OOTT", jPanel4);
+        tablepaneOOSS.addTab("OOTT", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -676,12 +676,12 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tablepaneOOSS)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tablepaneOOSS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -712,13 +712,11 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void btnRealizDiagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizDiagActionPerformed
-        FormularioDiagnostico diag = new FormularioDiagnostico();
-        diag.setVisible(true);
         
-
+        FormularioDiagnostico diag = new FormularioDiagnostico();
+        menuDiagnosticosPendientes.add(diag);
+        diag.show();
     }//GEN-LAST:event_btnRealizDiagActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarPatente;
@@ -743,7 +741,6 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
@@ -757,7 +754,6 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable5;
@@ -776,6 +772,8 @@ public class MenuOOSS extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblRut;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblanio;
+    private javax.swing.JPanel menuDiagnosticosPendientes;
+    private javax.swing.JTabbedPane tablepaneOOSS;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtColor;

@@ -23,6 +23,7 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setFocusable(true);
 
     }
+    
 
     public void setDatos(String usu, String pass) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -34,7 +35,7 @@ public class Login extends javax.swing.JFrame {
             usuario = null;
             password = null;
         }
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -133,31 +134,26 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
-         if (txtUsuario.getText().equals("") && txtPass.getText().equals("")) {
+
+        if (txtUsuario.getText().equals("") && txtPass.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña estan vacios \n Complete todos los campos");
             txtUsuario.setFocusable(true);
         } else if (txtUsuario.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Usuario está vacio");
             txtUsuario.setFocusable(true);
-        } 
-
-        else if (txtPass.getText().equals("")) {
+        } else if (txtPass.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Contraseña está vacio");
             txtPass.setFocusable(true);
-        } 
-         else {
+        } else {
             setDatos(txtUsuario.getText(), txtPass.getText());
-            if(usuario != null && password != null){
+            if (usuario != null && password != null) {
                 MenuPrincipal menu = new MenuPrincipal();
                 menu.setVisible(true);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña no son válidos \n Ingrese los datos nuevamente");
             }
-            
         }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -168,11 +164,8 @@ public class Login extends javax.swing.JFrame {
         if (election == JOptionPane.YES_OPTION) {
             System.exit(0);
         } else {
-
         }
-
     }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
