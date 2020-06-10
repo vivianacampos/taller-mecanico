@@ -207,7 +207,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnFactura)
                 .addGap(43, 43, 43)
                 .addComponent(btnSalir)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         MenuMostrar.setBackground(new java.awt.Color(255, 255, 255));
@@ -225,7 +225,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuMostrarLayout.setHorizontalGroup(
             MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuMostrarLayout.createSequentialGroup()
-                .addContainerGap(286, Short.MAX_VALUE)
+                .addContainerGap(301, Short.MAX_VALUE)
                 .addGroup(MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblImagen)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
