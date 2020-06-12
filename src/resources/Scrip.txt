@@ -1,0 +1,425 @@
+create table USUARIO
+(
+   ID_USUARIO          int(5) not null auto_increment,
+   ID_TALLER		   int(5) not null,
+   ID_PERFIL		   int(5) not null,
+   USUARIO             varchar(10),
+   PASSWORD            varchar(8),
+   PERFIL              varchar(15),
+   NOMBRE			   varchar(15),
+   APELLIDO  		   varchar(20),
+   primary key (ID_USUARIO)
+);
+create table AUTOMOVIL
+(
+   ID_AUTO              int(5) not null auto_increment,
+   ID_CLIENTE           int(5) not null,
+   ID_COLOR             int(5),
+   ID_MODELOAUTOMOVIL   int(5),
+   PATENTE              varchar(6),
+   COLOR                varchar(50),
+   ANO                  int(4),
+   KILOMETRAJE          int(6),
+   NUMERO_MOTOR         varchar(10),
+   primary key (ID_AUTO)
+);
+
+
+create table BODEGA
+(
+   ID_BODEGA            int(5) not null auto_increment,
+   ID_TALLER            int(5) not null,
+   ID_USUARIO           int(5) not null,
+   ID_STOCK             int(5) not null,
+   NOMBRE   			varchar(20),
+   primary key (ID_BODEGA)
+);
+
+
+create table CIUDAD
+(
+   ID_CIUDAD            int(5) not null auto_increment,
+   ID_PROVINCIA         int(5),
+   CIUDAD               varchar(20),
+   primary key (ID_CIUDAD)
+);
+create table CLIENTE
+(
+   ID_CLIENTE           int(5) not null auto_increment,
+   ID_COMUNA            int(5),
+   ID_TELEFONOS			int(5),
+   NOMBRE               varchar(50),
+   APELLIDO_PATERNO     varchar(15),
+   APELLIDO_MATERNO     varchar(15),
+   RUT                  varchar(15),
+   DIRECCION            varchar(50),
+   CORREO               varchar(50),
+   primary key (ID_CLIENTE)
+);
+create table COLOR
+(
+   ID_COLOR             int(5) not null auto_increment,
+   COLOR                varchar(15),
+   primary key (ID_COLOR)
+);
+create table COMUNA
+(
+   ID_COMUNA            int(5) not null auto_increment,
+   ID_CIUDAD            int(5),
+   COMUNA               varchar(50) not null,
+   primary key (ID_COMUNA)
+);
+create table DESPERFECTO
+(
+   ID_DESPERFECTO       int(5) not null auto_increment,
+   DEPERFECTO           varchar(50),
+   DESCRIPCION          varchar(100),
+   VALOR                int(6),
+   primary key (ID_DESPERFECTO)
+);
+create table DIAGNOSTICO
+(
+   ID_DIAGNOSTICO       int(5) not null auto_increment,
+   ID_TALLER           	int(5),
+   ID_USUARIO           int(5),
+   ID_TIPOOOSS          int(5),
+   ID_DESPERFECTO		int(5),		
+   DESCRIPCION          varchar(100),
+   
+   primary key (ID_DIAGNOSTICO)
+);
+
+create table ESTADOS
+(
+   ID_ESTADO            int(5) not null auto_increment,
+   ESTADO               varchar(12),
+   primary key (ID_ESTADO)
+);
+create table FACTURA
+(
+   ID_FACTURA           int(5) not null auto_increment,
+   ID_OOSS              int(5) not null,
+   ID_REPUESTO          int(5),
+   ID_F_PAGO            int(5),
+   ID_CLIENTE           int(5),
+   VALOR_NETO           float(7),
+   IVA                  float(6),
+   FECHA                date,
+   DESCUENTO            float(5),
+   primary key (ID_FACTURA)
+);
+create table FORMA_DE_PAGO
+(
+   ID_F_PAGO            int(5) not null auto_increment,
+   TIPO                 varchar(15) not null,
+   primary key (ID_F_PAGO)
+);
+create table MARCA
+(
+   ID_MARCA             int(5) not null auto_increment,
+   NOMBRE               varchar(50),
+   primary key (ID_MARCA)
+);
+create table MARCA_AUTOMOVIL
+(
+   ID_MARCAAUTO         int(5) not null auto_increment,
+   primary key (ID_MARCAAUTO)
+);
+create table MARCA_PROVEEDOR
+(
+   ID_MARCA             int(5) not null auto_increment,
+   ID_PROVEEDOR         int(5) not null,
+   primary key (ID_MARCA, ID_PROVEEDOR)
+);
+create table MODELO
+(
+   ID_MODELO            int(5) not null auto_increment,
+   ID_MARCA             int(5),
+   NOMBRE               varchar(50) not null,
+   primary key (ID_MODELO)
+);
+create table MODELO_AUTOMOVIL
+(
+   ID_MODELOAUTOMOVIL   int(5) not null auto_increment,
+   ID_MARCAAUTO         int(5),
+   primary key (ID_MODELOAUTOMOVIL)
+);
+
+create table ORDEN_DE_SERVICIO
+(
+   ID_OOSS              int(5) not null auto_increment,
+   ID_CLIENTE           int(5),
+   ID_ESTADO            int(5),
+   ID_AUTO              int(5),
+   FECHA                datetime,
+   primary key (ID_OOSS)
+);
+create table PEDIDO
+(
+   ID_PEDIDO            int(5) not null auto_increment,
+   ID_BODEGA            int(5),
+   ID_PROVEEDOR         int(5),
+   CANTIDAD             int(7),
+   FECHA                date,
+   primary key (ID_PEDIDO)
+); 
+create table PERFIL
+(
+   ID_PERFIL            int(5) not null auto_increment,
+   ID_USUARIO           int(5),
+   PERFIL               varchar(10),
+   primary key (ID_PERFIL)
+);
+
+create table PRESUPUESTO
+(
+   ID_PRESUPUESTO       int(5) not null auto_increment,
+   ID_DESPERFECTO       int(5) not null,
+   ID_USUARIO           int(5) not null,
+   ID_ESTADO            int(5) not null,
+   ID_TIPOOOSS          int(5) not null,
+   primary key (ID_PRESUPUESTO)
+);
+create table PROVEEDOR
+(
+   ID_PROVEEDOR         int(5) not null auto_increment,
+   ID_REPUESTO          int(5),
+   NOMBRE_EMPRESA       varchar(50),
+   DIRECCION            varchar(50),
+   primary key (ID_PROVEEDOR)
+);
+create table PROVINCIA
+(
+   ID_PROVINCIA         int(5) not null auto_increment,
+   ID_REGION            int(5) not null,	
+   NOMBRE_PROVINCIA     varchar(20) not null,
+	
+   primary key (ID_PROVINCIA)
+);
+create table REGION
+(
+   ID_REGION            int(5) not null auto_increment,
+   REGION               varchar(50),
+   primary key (ID_REGION)
+);
+create table REPUESTO
+(
+   ID_REPUESTO          int(5) not null auto_increment,
+   REPUESTO             varchar(40),
+   VALOR                float(6),
+   primary key (ID_REPUESTO)
+);
+create table REPUESTO_PEDIDO
+(
+   ID_PEDIDO            int(5) not null auto_increment,
+   ID_REPUESTO          int(5) not null,
+   primary key (ID_PEDIDO, ID_REPUESTO)
+);
+
+create table REPUESTO_PROVEEDOR
+(
+   ID_PROVEEDOR         int(5) not null auto_increment,
+   ID_REPUESTO          int(5) not null,
+   primary key (ID_PROVEEDOR, ID_REPUESTO)
+);
+create table STOCK
+(
+   ID_STOCK             int(5) not null auto_increment,
+   ID_BODEGA            int(5) not null,
+   ID_REPUESTO          int(5) not null,
+   CANTIDAD             int(7) not null,
+   primary key (ID_STOCK)
+);
+
+create table TALLER
+(
+   ID_TALLER            int(5) not null auto_increment,
+   ID_COMUNA            int(5),
+   DIRECCION            varchar(30),
+   CORREO               varchar(30),
+   primary key (ID_TALLER)
+);
+create table TELEFONO_CLIENTE
+(
+   ID_TELEFONOS         int(5) not null auto_increment,
+   ID_CLIENTE           int(5) not null,
+   primary key (ID_TELEFONOS, ID_CLIENTE)
+);
+create table TELEFONOS
+(
+   ID_TELEFONOS         int(5) not null auto_increment,
+   TELEFONO             int(10),
+   primary key (ID_TELEFONOS)
+);
+create table TIPO_OOSS
+(
+   ID_TIPOOOSS          int(5) not null auto_increment,
+   ID_OOSS              int(5) not null,
+   ID_PRESUPUESTO       int(5) not null,
+   TIPO_OOSS            varchar(20) not null,
+   DESCRIPCION          varchar(50),
+   DESCUENTO            int(5),
+   primary key (ID_TIPOOOSS)
+);
+
+
+alter table AUTOMOVIL add constraint FK_COLORES_AUTO foreign key (ID_COLOR)
+      references COLOR (ID_COLOR) on delete restrict on update restrict;
+
+alter table AUTOMOVIL add constraint FK_POSEE_AUTOS foreign key (ID_CLIENTE)
+      references CLIENTE (ID_CLIENTE) on delete restrict on update restrict;
+
+alter table AUTOMOVIL add constraint FK_RELATIONSHIP_44 foreign key (ID_MODELOAUTOMOVIL)
+      references MODELO_AUTOMOVIL (ID_MODELOAUTOMOVIL) on delete restrict on update restrict;
+
+
+alter table BODEGA add constraint FK_BODEGA_PERTENECE_A_UN_TALLER foreign key (ID_TALLER)
+      references TALLER (ID_TALLER) on delete restrict on update restrict;
+
+alter table BODEGA add constraint FK_CONTIENE_STOCK_BODEGA foreign key (ID_STOCK)
+      references STOCK (ID_STOCK) on delete restrict on update restrict;
+
+alter table BODEGA add constraint FK_USUARIO_A_CARGO_DE_BODEGA foreign key (ID_USUARIO)
+      references USUARIO (ID_USUARIO) on delete restrict on update restrict;
+
+alter table CIUDAD add constraint FK_CONTIENE foreign key (ID_PROVINCIA)
+      references PROVINCIA (ID_PROVINCIA) on delete restrict on update restrict;
+alter table CLIENTE add constraint FK_VIVE foreign key (ID_COMUNA)
+      references COMUNA (ID_COMUNA) on delete restrict on update restrict;
+alter table COMUNA add constraint FK_TIENE foreign key (ID_CIUDAD)
+      references CIUDAD (ID_CIUDAD) on delete restrict on update restrict;
+alter table DIAGNOSTICO add constraint FK_RELATIONSHIP_49 foreign key (ID_USUARIO)
+      references USUARIO (ID_USUARIO) on delete restrict on update restrict;
+
+alter table DIAGNOSTICO add constraint FK_RELATIONSHIP_57 foreign key (ID_TALLER)
+      references TALLER (ID_TALLER) on delete restrict on update restrict;
+
+alter table DIAGNOSTICO add constraint FK_RELATIONSHIP_58 foreign key (ID_TIPOOOSS)
+      references TIPO_OOSS (ID_TIPOOOSS) on delete restrict on update restrict;
+
+alter table FACTURA add constraint FK_MEDIO_DE_PAGO foreign key (ID_F_PAGO)
+      references FORMA_DE_PAGO (ID_F_PAGO) on delete restrict on update restrict;
+
+alter table FACTURA add constraint FK_PAGO foreign key (ID_OOSS)
+      references ORDEN_DE_SERVICIO (ID_OOSS) on delete restrict on update restrict;
+
+alter table FACTURA add constraint FK_RELATIONSHIP_50 foreign key (ID_CLIENTE)
+      references CLIENTE (ID_CLIENTE) on delete restrict on update restrict;
+
+alter table FACTURA add constraint FK_RELATIONSHIP_56 foreign key (ID_REPUESTO)
+      references REPUESTO (ID_REPUESTO) on delete restrict on update restrict;
+
+alter table MODELO add constraint FK_TIENE_VARIOS foreign key (ID_MARCA)
+      references MARCA (ID_MARCA) on delete restrict on update restrict;
+alter table MARCA_PROVEEDOR add constraint FK_RELATIONSHIP_47 foreign key (ID_MARCA)
+      references MARCA (ID_MARCA) on delete restrict on update restrict;
+
+alter table MARCA_PROVEEDOR add constraint FK_RELATIONSHIP_48 foreign key (ID_PROVEEDOR)
+      references PROVEEDOR (ID_PROVEEDOR) on delete restrict on update restrict;
+	  
+alter table MODELO_AUTOMOVIL add constraint FK_MODELO_PERTENECE_A_MARCA foreign key (ID_MARCAAUTO)
+      references MARCA_AUTOMOVIL (ID_MARCAAUTO) on delete restrict on update restrict;
+	    
+alter table ORDEN_DE_SERVICIO add constraint FK_ORDEN_DE_SERVICIO_POR_CLIENTE foreign key (ID_CLIENTE)
+      references CLIENTE (ID_CLIENTE) on delete restrict on update restrict;
+
+alter table ORDEN_DE_SERVICIO add constraint FK_REPARACION foreign key (ID_AUTO)
+      references AUTOMOVIL (ID_AUTO) on delete restrict on update restrict;
+
+alter table ORDEN_DE_SERVICIO add constraint FK_TIENE_UN_ESTADO foreign key (ID_ESTADO)
+      references ESTADOS (ID_ESTADO) on delete restrict on update restrict;
+	  
+alter table PEDIDO add constraint FK_GENERA_PEDIDO foreign key (ID_BODEGA)
+      references BODEGA (ID_BODEGA) on delete restrict on update restrict;
+
+alter table PEDIDO add constraint FK_PEDIDO_A_PROVEEDOR foreign key (ID_PROVEEDOR)
+      references PROVEEDOR (ID_PROVEEDOR) on delete restrict on update restrict;
+	  
+alter table PERFIL add constraint FK_REFERENCE_48 foreign key (ID_USUARIO)
+      references USUARIO (ID_USUARIO) on delete restrict on update restrict;
+
+alter table PRESUPUESTO add constraint FK_ESTADOS foreign key (ID_ESTADO)
+      references ESTADOS (ID_ESTADO) on delete restrict on update restrict;
+
+alter table PRESUPUESTO add constraint FK_GENERA_UN2 foreign key (ID_TIPOOOSS)
+      references TIPO_OOSS (ID_TIPOOOSS) on delete restrict on update restrict;
+
+alter table PRESUPUESTO add constraint FK_RELATIONSHIP_46 foreign key (ID_DESPERFECTO)
+      references DESPERFECTO (ID_DESPERFECTO) on delete restrict on update restrict;
+	  
+alter table PROVEEDOR add constraint FK_TRAE foreign key (ID_REPUESTO)
+      references REPUESTO (ID_REPUESTO) on delete restrict on update restrict;
+	  
+alter table PROVINCIA add constraint FK_PERTENECE foreign key (ID_REGION)
+      references REGION (ID_REGION) on delete restrict on update restrict;
+	  
+alter table REPUESTO_PEDIDO add constraint FK_RELATIONSHIP_54 foreign key (ID_PEDIDO)
+      references PEDIDO (ID_PEDIDO) on delete restrict on update restrict;
+
+alter table REPUESTO_PEDIDO add constraint FK_RELATIONSHIP_55 foreign key (ID_REPUESTO)
+      references REPUESTO (ID_REPUESTO) on delete restrict on update restrict;
+	  
+alter table REPUESTO_PROVEEDOR add constraint FK_LO_TRAE_UN foreign key (ID_REPUESTO)
+      references REPUESTO (ID_REPUESTO) on delete restrict on update restrict;
+
+alter table REPUESTO_PROVEEDOR add constraint FK_RELATIONSHIP_59 foreign key (ID_PROVEEDOR)
+      references PROVEEDOR (ID_PROVEEDOR) on delete restrict on update restrict;
+	  
+alter table STOCK add constraint FK_CONTIENE_STOCK_BODEGA2 foreign key (ID_BODEGA)
+      references BODEGA (ID_BODEGA) on delete restrict on update restrict;
+
+alter table STOCK add constraint FK_TIENE_UN foreign key (ID_REPUESTO)
+      references REPUESTO (ID_REPUESTO) on delete restrict on update restrict;
+	  
+alter table TALLER add constraint FK_RELATIONSHIP_51 foreign key (ID_COMUNA)
+      references COMUNA (ID_COMUNA) on delete restrict on update restrict;
+	  
+alter table TELEFONO_CLIENTE add constraint FK_RELATIONSHIP_42 foreign key (ID_TELEFONOS)
+      references TELEFONOS (ID_TELEFONOS) on delete restrict on update restrict;
+	 
+alter table TELEFONO_CLIENTE add constraint FK_RELATIONSHIP_43 foreign key (ID_CLIENTE)
+      references CLIENTE (ID_CLIENTE) on delete restrict on update restrict;
+	  
+alter table TIPO_OOSS add constraint FK_GENERA_UN foreign key (ID_PRESUPUESTO)
+      references PRESUPUESTO (ID_PRESUPUESTO) on delete restrict on update restrict;
+
+alter table TIPO_OOSS add constraint FK_RELATIONSHIP_52 foreign key (ID_OOSS)
+      references ORDEN_DE_SERVICIO (ID_OOSS) on delete restrict on update restrict;
+
+
+
+drop table if exists USUARIO;
+drop table if exists AUTOMOVIL;
+drop table if exists BODEGA;
+drop table if exists CIUDAD;
+drop table if exists CLIENTE;
+drop table if exists COLOR;
+drop table if exists COMUNA;
+drop table if exists DESPERFECTO;
+drop table if exists DIAGNOSTICO;
+drop table if exists EMPLEADO;
+drop table if exists ESTADOS;
+drop table if exists FACTURA;
+drop table if exists FORMA_DE_PAGO;
+drop table if exists MARCA;
+drop table if exists MARCA_AUTOMOVIL;
+drop table if exists MODELO;
+drop table if exists MARCA_PROVEEDOR;
+drop table if exists MODELO_AUTOMOVIL;
+drop table if exists ORDEN_DE_COMPRA_EMPRESA;
+drop table if exists ORDEN_DE_SERVICIO;
+drop table if exists PEDIDO;
+drop table if exists PERFIL;
+drop table if exists PRESUPUESTO;
+drop table if exists PROVEEDOR;
+drop table if exists PROVINCIA;
+drop table if exists REGION;
+drop table if exists REPUESTO;
+drop table if exists REPUESTO_PEDIDO;
+drop table if exists REPUESTO_PROVEEDOR;
+drop table if exists STOCK;
+drop table if exists TALLER;
+drop table if exists TELEFONO_CLIENTE;
+drop table if exists TELEFONOS;
+drop table if exists TIPO_OOSS;
+

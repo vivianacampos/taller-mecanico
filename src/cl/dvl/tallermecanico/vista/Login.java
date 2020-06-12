@@ -23,19 +23,17 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setFocusable(true);
 
     }
-    
 
     public void setDatos(String usu, String pass) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario user = usuarioDAO.getUsuarios(usu, pass);
-        if(user!=null){
+        if (user != null) {
             usuario = user.getUsuario();
             password = user.getPassword();
-        }else{
+        } else {
             usuario = null;
             password = null;
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +50,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1x/baseline_account_circle_white_48dp.png"))); // NOI18N
+        lblUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/baseline_account_circle_white_48dp.png"))); // NOI18N
 
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -61,11 +59,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        lblBlock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1x/baseline_lock_white_48dp.png"))); // NOI18N
+        lblBlock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/baseline_lock_white_48dp.png"))); // NOI18N
 
         txtPass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        lbImagenUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        lbImagenUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/usuario.png"))); // NOI18N
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLogin.setText("Login");
@@ -134,7 +132,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
         if (txtUsuario.getText().equals("") && txtPass.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña estan vacios \n Complete todos los campos");
             txtUsuario.setFocusable(true);
@@ -151,11 +148,11 @@ public class Login extends javax.swing.JFrame {
                 menu.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña no son válidos \n Ingrese los datos nuevamente");
+                JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña no son válidos \n Ingrese los datos nuevamente");
             }
         }
-    }//GEN-LAST:event_btnLoginActionPerformed
 
+    }//GEN-LAST:event_btnLoginActionPerformed
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         Object[] opciones = {"Aceptar", "Cancelar"};
         int election = JOptionPane.showOptionDialog(confirmacion, "¿Desea Salir?", "Confirmar",

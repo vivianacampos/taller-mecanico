@@ -20,7 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    private Component confirmacion;
+    //private Component confirmacion;
 
     /**
      * Creates new form Menu
@@ -207,15 +207,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnFactura)
                 .addGap(43, 43, 43)
                 .addComponent(btnSalir)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MenuMostrar.setBackground(new java.awt.Color(255, 255, 255));
+        MenuMostrar.setOpaque(false);
 
         lblTitulo.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblTitulo.setText("Taller Mecánico \"Rápido y Furioso\"");
 
-        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Reparacion.png"))); // NOI18N
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Reparacion.png"))); // NOI18N
 
         MenuMostrar.setLayer(lblTitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         MenuMostrar.setLayer(lblImagen, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -224,21 +225,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuMostrar.setLayout(MenuMostrarLayout);
         MenuMostrarLayout.setHorizontalGroup(
             MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuMostrarLayout.createSequentialGroup()
-                .addContainerGap(301, Short.MAX_VALUE)
-                .addGroup(MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(313, 313, 313))
+            .addGroup(MenuMostrarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblImagen)
+                .addGap(387, 387, 387))
+            .addGroup(MenuMostrarLayout.createSequentialGroup()
+                .addGap(344, 344, 344)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(359, Short.MAX_VALUE))
         );
         MenuMostrarLayout.setVerticalGroup(
             MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuMostrarLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(103, 103, 103)
                 .addComponent(lblTitulo)
                 .addGap(70, 70, 70)
                 .addComponent(lblImagen)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,12 +251,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MenuMostrar))
+                .addComponent(MenuMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuPrincipal)
-            .addComponent(MenuMostrar)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MenuMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,6 +273,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuClientes menuCli = new MenuClientes();
         MenuMostrar.add(menuCli);
         menuCli.show();
+        
         try {
             menuCli.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -279,7 +286,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         //this.dispose();
         Object[] opciones = {"Aceptar", "Cancelar"};
-        int election = JOptionPane.showOptionDialog(confirmacion, "¿Desea Salir?", "Confirmar",
+        int election = JOptionPane.showOptionDialog(null, "¿Desea Salir?", "Confirmar",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "aceptar");
         if (election == JOptionPane.YES_OPTION) {

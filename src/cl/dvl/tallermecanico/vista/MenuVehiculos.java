@@ -39,6 +39,7 @@ public class MenuVehiculos extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jRadioButton4 = new javax.swing.JRadioButton();
 
+        setBorder(null);
         setTitle("Vehículos");
 
         grupVehiculos.add(jRadioButton1);
@@ -105,7 +106,7 @@ public class MenuVehiculos extends javax.swing.JInternalFrame {
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
