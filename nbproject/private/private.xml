@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/INACAP/3er%20Semestre%20AP/Componentes%20WEB/Nueva%20Carpeta/TallerMecanico/src/cl/dvl/tallermecanico/vista/MenuClientes.java</file>
-            <file>file:/D:/INACAP/3er%20Semestre%20AP/Componentes%20WEB/Nueva%20Carpeta/TallerMecanico/src/cl/dvl/tallermecanico/vista/MenuPrincipal.java</file>
-            <file>file:/D:/INACAP/3er%20Semestre%20AP/Componentes%20WEB/Nueva%20Carpeta/TallerMecanico/src/cl/dvl/tallermecanico/vista/MenuFactura.java</file>
-            <file>file:/D:/INACAP/3er%20Semestre%20AP/Componentes%20WEB/Nueva%20Carpeta/TallerMecanico/src/cl/dvl/tallermecanico/vista/MenuOOSS.java</file>
-            <file>file:/D:/INACAP/3er%20Semestre%20AP/Componentes%20WEB/Nueva%20Carpeta/TallerMecanico/src/cl/dvl/tallermecanico/vista/FormularioDiagnostico.java</file>
+            <file>file:/C:/Users/Artsk/Documents/NetBeansProjects/taller-mecanico/src/cl/dvl/tallermecanico/modelo/LocacionDAO.java</file>
+            <file>file:/C:/Users/Artsk/Documents/NetBeansProjects/taller-mecanico/src/cl/dvl/tallermecanico/interfaz/Cliente.java</file>
+            <file>file:/C:/Users/Artsk/Documents/NetBeansProjects/taller-mecanico/src/cl/dvl/tallermecanico/utils/Conexion.java</file>
+            <file>file:/C:/Users/Artsk/Documents/NetBeansProjects/taller-mecanico/src/cl/dvl/tallermecanico/vista/Login.java</file>
+            <file>file:/C:/Users/Artsk/Documents/NetBeansProjects/taller-mecanico/src/cl/dvl/tallermecanico/vista/MenuClientes.java</file>
+            <file>file:/C:/Users/Artsk/Documents/NetBeansProjects/taller-mecanico/src/cl/dvl/tallermecanico/modelo/ClienteDAO.java</file>
         </group>
     </open-files>
 </project-private>

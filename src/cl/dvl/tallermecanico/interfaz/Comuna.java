@@ -17,6 +17,12 @@ public class Comuna {
     public Comuna() {
     }
 
+    public Comuna(String comuna) {
+        this.comuna = comuna;
+    }
+    
+    
+    
     public Comuna(int idComuna, String comuna) {
         this.idComuna = idComuna;
         this.comuna = comuna;

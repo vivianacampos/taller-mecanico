@@ -1,3 +1,5 @@
+CREATE SCHEMA `tallermecanico` ;
+
 create table USUARIO
 (
    ID_USUARIO          int(5) not null auto_increment,
@@ -15,7 +17,7 @@ create table AUTOMOVIL
    ID_AUTO              int(5) not null auto_increment,
    ID_CLIENTE           int(5) not null,
    ID_COLOR             int(5),
-   ID_MODELOAUTOMOVIL   int(5),
+   ID_MODELO_AUTO   int(5),
    PATENTE              varchar(6),
    COLOR                varchar(50),
    ANO                  int(4),
@@ -30,7 +32,6 @@ create table BODEGA
    ID_BODEGA            int(5) not null auto_increment,
    ID_TALLER            int(5) not null,
    ID_USUARIO           int(5) not null,
-   ID_STOCK             int(5) not null,
    NOMBRE   			varchar(20),
    primary key (ID_BODEGA)
 );
@@ -47,13 +48,13 @@ create table CLIENTE
 (
    ID_CLIENTE           int(5) not null auto_increment,
    ID_COMUNA            int(5),
-   ID_TELEFONOS			int(5),
    NOMBRE               varchar(50),
    APELLIDO_PATERNO     varchar(15),
    APELLIDO_MATERNO     varchar(15),
    RUT                  varchar(15),
    DIRECCION            varchar(50),
    CORREO               varchar(50),
+   TELEFONO				int(9),
    primary key (ID_CLIENTE)
 );
 create table COLOR
@@ -122,8 +123,9 @@ create table MARCA
 );
 create table MARCA_AUTOMOVIL
 (
-   ID_MARCAAUTO         int(5) not null auto_increment,
-   primary key (ID_MARCAAUTO)
+   ID_MARCA_AUTO         int(5) not null auto_increment,
+   MARCA 			varchar(30),
+   primary key (ID_MARCA_AUTO)
 );
 create table MARCA_PROVEEDOR
 (
@@ -131,19 +133,14 @@ create table MARCA_PROVEEDOR
    ID_PROVEEDOR         int(5) not null,
    primary key (ID_MARCA, ID_PROVEEDOR)
 );
-create table MODELO
-(
-   ID_MODELO            int(5) not null auto_increment,
-   ID_MARCA             int(5),
-   NOMBRE               varchar(50) not null,
-   primary key (ID_MODELO)
-);
+
 create table MODELO_AUTOMOVIL
 (
-   ID_MODELOAUTOMOVIL   int(5) not null auto_increment,
-   ID_MARCAAUTO         int(5),
-   primary key (ID_MODELOAUTOMOVIL)
-);
+   ID_MODELO_AUTO   int(5) not null auto_increment,
+   ID_MARCA         int(5),
+   MODELO           varchar(30),
+   primary key (ID_MODELO_AUTO)
+);x
 
 create table ORDEN_DE_SERVICIO
 (
@@ -163,13 +160,7 @@ create table PEDIDO
    FECHA                date,
    primary key (ID_PEDIDO)
 ); 
-create table PERFIL
-(
-   ID_PERFIL            int(5) not null auto_increment,
-   ID_USUARIO           int(5),
-   PERFIL               varchar(10),
-   primary key (ID_PERFIL)
-);
+
 
 create table PRESUPUESTO
 (
@@ -192,7 +183,7 @@ create table PROVINCIA
 (
    ID_PROVINCIA         int(5) not null auto_increment,
    ID_REGION            int(5) not null,	
-   NOMBRE_PROVINCIA     varchar(20) not null,
+   NOMBRE_PROVINCIA     varchar(25) not null,
 	
    primary key (ID_PROVINCIA)
 );
@@ -235,31 +226,33 @@ create table TALLER
 (
    ID_TALLER            int(5) not null auto_increment,
    ID_COMUNA            int(5),
+   ID_TELEFONOS			int(5),
    DIRECCION            varchar(30),
    CORREO               varchar(30),
    primary key (ID_TALLER)
 );
-create table TELEFONO_CLIENTE
-(
-   ID_TELEFONOS         int(5) not null auto_increment,
-   ID_CLIENTE           int(5) not null,
-   primary key (ID_TELEFONOS, ID_CLIENTE)
-);
+
 create table TELEFONOS
 (
    ID_TELEFONOS         int(5) not null auto_increment,
    TELEFONO             int(10),
    primary key (ID_TELEFONOS)
 );
+
+create table TELEFONO_SUCURSAL(
+ID_TELEFONOS  int(5),
+ID_TALLER  int(5)
+);
+
 create table TIPO_OOSS
 (
-   ID_TIPOOOSS          int(5) not null auto_increment,
+   ID_TIPO_OOSS          int(5) not null auto_increment,
    ID_OOSS              int(5) not null,
    ID_PRESUPUESTO       int(5) not null,
    TIPO_OOSS            varchar(20) not null,
    DESCRIPCION          varchar(50),
    DESCUENTO            int(5),
-   primary key (ID_TIPOOOSS)
+   primary key (ID_TIPO_OOSS)
 );
 
 
@@ -272,22 +265,21 @@ alter table AUTOMOVIL add constraint FK_POSEE_AUTOS foreign key (ID_CLIENTE)
 alter table AUTOMOVIL add constraint FK_RELATIONSHIP_44 foreign key (ID_MODELOAUTOMOVIL)
       references MODELO_AUTOMOVIL (ID_MODELOAUTOMOVIL) on delete restrict on update restrict;
 
-
 alter table BODEGA add constraint FK_BODEGA_PERTENECE_A_UN_TALLER foreign key (ID_TALLER)
       references TALLER (ID_TALLER) on delete restrict on update restrict;
-
-alter table BODEGA add constraint FK_CONTIENE_STOCK_BODEGA foreign key (ID_STOCK)
-      references STOCK (ID_STOCK) on delete restrict on update restrict;
 
 alter table BODEGA add constraint FK_USUARIO_A_CARGO_DE_BODEGA foreign key (ID_USUARIO)
       references USUARIO (ID_USUARIO) on delete restrict on update restrict;
 
 alter table CIUDAD add constraint FK_CONTIENE foreign key (ID_PROVINCIA)
       references PROVINCIA (ID_PROVINCIA) on delete restrict on update restrict;
+	  
 alter table CLIENTE add constraint FK_VIVE foreign key (ID_COMUNA)
       references COMUNA (ID_COMUNA) on delete restrict on update restrict;
+	  
 alter table COMUNA add constraint FK_TIENE foreign key (ID_CIUDAD)
       references CIUDAD (ID_CIUDAD) on delete restrict on update restrict;
+	  
 alter table DIAGNOSTICO add constraint FK_RELATIONSHIP_49 foreign key (ID_USUARIO)
       references USUARIO (ID_USUARIO) on delete restrict on update restrict;
 
@@ -311,6 +303,7 @@ alter table FACTURA add constraint FK_RELATIONSHIP_56 foreign key (ID_REPUESTO)
 
 alter table MODELO add constraint FK_TIENE_VARIOS foreign key (ID_MARCA)
       references MARCA (ID_MARCA) on delete restrict on update restrict;
+	  
 alter table MARCA_PROVEEDOR add constraint FK_RELATIONSHIP_47 foreign key (ID_MARCA)
       references MARCA (ID_MARCA) on delete restrict on update restrict;
 
@@ -335,9 +328,6 @@ alter table PEDIDO add constraint FK_GENERA_PEDIDO foreign key (ID_BODEGA)
 alter table PEDIDO add constraint FK_PEDIDO_A_PROVEEDOR foreign key (ID_PROVEEDOR)
       references PROVEEDOR (ID_PROVEEDOR) on delete restrict on update restrict;
 	  
-alter table PERFIL add constraint FK_REFERENCE_48 foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO) on delete restrict on update restrict;
-
 alter table PRESUPUESTO add constraint FK_ESTADOS foreign key (ID_ESTADO)
       references ESTADOS (ID_ESTADO) on delete restrict on update restrict;
 
@@ -374,11 +364,11 @@ alter table STOCK add constraint FK_TIENE_UN foreign key (ID_REPUESTO)
 alter table TALLER add constraint FK_RELATIONSHIP_51 foreign key (ID_COMUNA)
       references COMUNA (ID_COMUNA) on delete restrict on update restrict;
 	  
-alter table TELEFONO_CLIENTE add constraint FK_RELATIONSHIP_42 foreign key (ID_TELEFONOS)
-      references TELEFONOS (ID_TELEFONOS) on delete restrict on update restrict;
-	 
-alter table TELEFONO_CLIENTE add constraint FK_RELATIONSHIP_43 foreign key (ID_CLIENTE)
-      references CLIENTE (ID_CLIENTE) on delete restrict on update restrict;
+alter table TELEFONO_SUCURSAL add constraint FK_RELATIONSHIP_61 foreign key (ID_TELEFONOS)
+			references TELEFONOS (ID_TELEFONOS) on delete restrict on update restrict;
+			
+alter table TELEFONO_SUCURSAL add constraint FK_RELATIONSHIP_62 foreign key (ID_TALLER)
+			references TALLER (ID_TALLER) on delete restrict on update restrict;			
 	  
 alter table TIPO_OOSS add constraint FK_GENERA_UN foreign key (ID_PRESUPUESTO)
       references PRESUPUESTO (ID_PRESUPUESTO) on delete restrict on update restrict;
@@ -386,6 +376,192 @@ alter table TIPO_OOSS add constraint FK_GENERA_UN foreign key (ID_PRESUPUESTO)
 alter table TIPO_OOSS add constraint FK_RELATIONSHIP_52 foreign key (ID_OOSS)
       references ORDEN_DE_SERVICIO (ID_OOSS) on delete restrict on update restrict;
 
+
+INSERT INTO `tallermecanico`.`perfil` (`PERFIL`) VALUES ('Secretaria');
+INSERT INTO `tallermecanico`.`perfil` (`PERFIL`) VALUES ('JefeMec');
+INSERT INTO `tallermecanico`.`perfil` (`PERFIL`) VALUES ('Mecánico');
+INSERT INTO `tallermecanico`.`perfil` (`PERFIL`) VALUES ('Gerente');
+INSERT INTO `tallermecanico`.`perfil` (`PERFIL`) VALUES ('Contador');
+INSERT INTO `tallermecanico`.`perfil` (`PERFIL`) VALUES ('Admin');
+
+insert into REGION (ID_REGION, REGION) VALUES (01,   'XV Arica y Parinacota');
+insert into REGION (ID_REGION, REGION) VALUES (02,    'I Tarapaca');
+insert into REGION (ID_REGION, REGION) VALUES (03,   'II Antofagasta');
+insert into REGION (ID_REGION, REGION) VALUES (04,  'III Atacama');
+insert into REGION (ID_REGION, REGION) VALUES (05,   'IV Coquimbo');
+insert into REGION (ID_REGION, REGION) VALUES (06,    'V Valparaiso');
+insert into REGION (ID_REGION, REGION) VALUES (07,   'RM Metropolitana de Santiago');
+insert into REGION (ID_REGION, REGION) VALUES (08,   'VI Libertador General Ber nardo O’Higgins');
+insert into REGION (ID_REGION, REGION) VALUES (09,  'VII Maule');
+insert into REGION (ID_REGION, REGION) VALUES (10,  'XVI Ñuble');
+insert into REGION (ID_REGION, REGION) VALUES (11, 'VIII Biobio');
+insert into REGION (ID_REGION, REGION) VALUES (12,   'IX La Araucania');
+insert into REGION (ID_REGION, REGION) VALUES (13,  'XIV Los Ríos');
+insert into REGION (ID_REGION, REGION) VALUES (14,   'X Los Lagos');
+insert into REGION (ID_REGION, REGION) VALUES (15,   'XI Aysén');
+insert into REGION (ID_REGION, REGION) VALUES (16,  'XII Magallanes y la Antártica Chilena');
+
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 1, 01,'Provincia de Arica');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 2, 02,'Provincia de Iquique');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 3, 03,'Provincia de Antofagasta');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 4, 04,'Provincia de Copiapó');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 5, 05,'Provincia de Limari');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 6, 06,'Provincia de Valparaiso');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 7, 07,'Provincia de Santiago');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 8, 08,'Provincia de Cachapoal');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES ( 9, 09,'Provincia de Talca');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES (10, 10,'Provincia de Itata');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES (11, 11,'Provincia de Biobío');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES (12, 12,'Provincia de Malleco');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES (13, 13,'Provincia de Valdivia');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES (14, 14,'Provincia de Chiloé');
+insert into PROVINCIA (ID_PROVINCIA, ID_REGION, PROVINCIA) VALUES (15, 15,'Provincia de Aysén');
+insert into provincia (id_provincia, id_region, provincia) values (16, 16,'provincia de magallanes');
+ 	
+
+
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (50,01,'ARICA');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (51,02,'IQUIQUE');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (52,03,'ANTOFAGASTA');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (53,04,'COPIAPO');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (54,05,'COQUIMBO');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (55,06,'VIÑA DEL MAR');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (56,07,'SANTIAGO');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (57,08,'RANCAGUA');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (58,09,'CURICO');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (59,10,'CHILLAN');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (60,11,'TEMUCO');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (61,12,'VALDIVIA');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (62,13,'OSORNO');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (63,14,'PUERTO MONTT');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (64,15,'AYSEN');
+insert into CIUDAD (ID_CIUDAD, ID_PROVINCIA, CIUDAD) VALUES (65,16,'PUNTA ARENAS');
+
+
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (100,56,'Santiago');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (103,56,'Conchalí');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (104,56,'Huechuraba');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (105,56,'Independencia');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (106,56,'Quilicura');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (107,56,'Recoleta');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (108,56,'Renca');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (109,56,'Las Condes');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (110,56,'Lo Barnechea');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (111,56,'Providencia');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (112,56,'Vitacura');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (123,56,'La Reina');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (124,56,'Puente Alto'); 
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (125,56,'Macul');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (126,56,'Ñuñoa');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (127,56,'Peñalolén');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (128,56,'La Florida');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (129,56,'La Granja');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (130,56,'El Bosque');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (131,56,'La Cisterna');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (132,56,'La Pintana');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (133,56,'San Ramón');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (134,56,'Lo Espejo');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (135,56,'Pedro Aguirre Cerda');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (136,56,'San Joaquín');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (137,56,'San Miguel');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (138,56,'Cerrillos');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (139,56,'Estación');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (140,56,'Maipú');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (141,56,'Navia');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (142,56,'Lo Prado');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (143,56,'Pudahuel');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (144,56,'Quinta Normal');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (145,55,'Villa Alemana');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (146,55,'Quilpue');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (147,55,'Olmue');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (148,55,'Limache');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (149,55,'Valparaiso');
+INSERT INTO COMUNA (ID_COMUNA, ID_CIUDAD, COMUNA) VALUES (150,55,'Quintero');
+
+INSERT INTO `tallermecanico`.`telefonos` (`TELEFONO`) VALUES ('225665565');
+INSERT INTO `tallermecanico`.`telefonos` (`TELEFONO`) VALUES ('222562885');
+
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Blanco');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Negro');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Rojo');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Azul');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Burdeo');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Amarillo');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Cafe');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Naranja');
+INSERT INTO `tallermecanico`.`color` (`COLOR`) VALUES ('Turquesa');
+
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Chevrolet');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Ford');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('BMW');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Audi');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Kia');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Fiat');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Hyundai');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Mazda');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Susuki');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Toyota');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Volswagen');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Renault');
+INSERT INTO `tallermecanico`.`marca_automovil` (`MARCA`) VALUES ('Peugeot');
+
+
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('1', 'Sail');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('1', 'Aveo');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('1', 'Captiva');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('1', 'Spark');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('2', 'Fiesta');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('2', 'Focus');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('2', 'Ecosport');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('2', 'Ranger');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('3', 'Gran Coupe');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('4', 'A1');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('4', 'A2');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('4', 'A3');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('4', 'A4');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('5', 'Morning');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('5', 'Soluto');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('5', 'Cerato');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('5', 'Sportage');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('5', 'Rio 4');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('6', 'Palio');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('6', 'Punto');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('6', 'Mobi');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('6', 'Uno Sporting');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('7', 'Grand');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('7', 'Accent');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('7', 'Elantra');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('7', 'Veloster');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('7', 'Tucson');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('8', 'Mazda 2');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('8', 'Mazda 3');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('8', 'Mazda 6');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('8', 'CX-5');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('8', 'RX-8');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('9', 'Baleno');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('9', 'Swift');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('9', 'Ignis');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('9', 'Ciaz');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('9', 'Jinmy');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('10', 'Corolla');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('10', 'Yaris');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('10', 'Hilux');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('10', 'Auris');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('10', 'Avensis');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('11', 'Golf');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('11', 'Gol');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('11', 'Sirocco');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('11', 'Combi');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('12', 'Clio');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('12', 'Megane');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('12', 'Capture');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('12', 'Fluence');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('12', 'Koleos');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('13', '301');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('13', '208');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('13', '207');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('13', '3008');
+INSERT INTO `tallermecanico`.`modelo_automovil` (`ID_MARCA`, `MODELO`) VALUES ('13', '308');
 
 
 drop table if exists USUARIO;

@@ -15,26 +15,38 @@ public class Cliente {
     private String apellidoP;
     private String rut;
     private String direccion;
-    private int telefono;
-    private int celular;
+    private Integer telefono;
     private String correo;
     private String comuna;
     private String region;
 
     public Cliente() {
     }
-
-    public Cliente(String nombre, String apellidoM, String apellidoP, String rut, String direccion, int telefono, int celular, String correo, String comuna, String region) {
+    
+    
+    public Cliente(String nombre, String apellidoM, String apellidoP, String rut, String direccion, Integer telefono, String correo, String comuna, String region) {
         this.nombre = nombre;
         this.apellidoM = apellidoM;
         this.apellidoP = apellidoP;
         this.rut = rut;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.celular = celular;
         this.correo = correo;
         this.comuna = comuna;
+        this.region = region;
     }
+
+    public Cliente(String nombre, String apellidoM, String apellidoP, String direccion, Integer telefono, String correo, String comuna, String region) {
+        this.nombre = nombre;
+        this.apellidoM = apellidoM;
+        this.apellidoP = apellidoP;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.comuna = comuna;
+        this.region = region;
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -75,20 +87,12 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public int getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
-    }
-
-    public int getCelular() {
-        return celular;
-    }
-
-    public void setCelular(int celular) {
-        this.celular = celular;
     }
 
     public String getCorreo() {
@@ -107,8 +111,18 @@ public class Cliente {
         this.comuna = comuna;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nombre=" + nombre + ", apellidoM=" + apellidoM + ", apellidoP=" + apellidoP + ", rut=" + rut + ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + ", comuna=" + comuna + ", region=" + region + '}';
+    }
     
-    
-    
-    
+
 }

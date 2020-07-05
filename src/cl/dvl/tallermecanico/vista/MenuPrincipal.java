@@ -213,8 +213,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuMostrar.setBackground(new java.awt.Color(255, 255, 255));
         MenuMostrar.setOpaque(false);
 
-        lblTitulo.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        lblTitulo.setText("Taller Mecánico \"Rápido y Furioso\"");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        lblTitulo.setText("Bienvenido a la aplicación de Taller Mecánico \"Rápido y Furioso\"");
 
         lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Reparacion.png"))); // NOI18N
 
@@ -226,22 +226,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuMostrarLayout.setHorizontalGroup(
             MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuMostrarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblImagen)
-                .addGap(387, 387, 387))
-            .addGroup(MenuMostrarLayout.createSequentialGroup()
-                .addGap(344, 344, 344)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addGroup(MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuMostrarLayout.createSequentialGroup()
+                        .addGap(397, 397, 397)
+                        .addComponent(lblImagen))
+                    .addGroup(MenuMostrarLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         MenuMostrarLayout.setVerticalGroup(
             MenuMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuMostrarLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(76, 76, 76)
                 .addComponent(lblTitulo)
-                .addGap(70, 70, 70)
+                .addGap(92, 92, 92)
                 .addComponent(lblImagen)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,15 +252,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MenuMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(MenuMostrar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuPrincipal)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(MenuMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         pack();

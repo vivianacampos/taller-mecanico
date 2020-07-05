@@ -29,7 +29,7 @@ public class LocacionDAO {
     public List<Region> getRegion() {
         List listaRegiones = new LinkedList();
         ResultSet rs = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         Connection con = conn.getCon();
 
         Region reg = new Region();
@@ -50,8 +50,8 @@ public class LocacionDAO {
 
     public List<Comuna> getComunaByIdRegion(int id) {
         List<Comuna> listaComunas = new LinkedList<>();
-        ResultSet rs;
-        PreparedStatement ps;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
         Connection con = conn.getCon();
         Comuna com = new Comuna();
         String query = "Select "
@@ -73,7 +73,52 @@ public class LocacionDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(LocacionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         }
         return listaComunas;
+    }
+    
+    public List<Comuna> getComuna(){
+        List<Comuna> listaCom = new LinkedList<>();
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        
+        Connection con = conn.getCon();
+        Comuna com = new Comuna();
+         String query = "Select COMUNA, ID_COMUNA from comuna;";
+         try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                com = new Comuna(rs.getInt("ID_COMUNA"), rs.getString("COMUNA"));
+                listaCom.add(com);
+            }
+        } catch (Exception e) {
+             Logger.getLogger(LocacionDAO.class.getName()).log(Level.SEVERE, null, e);
+        }finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         return listaCom;
     }
 }

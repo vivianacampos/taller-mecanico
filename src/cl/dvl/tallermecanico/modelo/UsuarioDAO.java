@@ -21,19 +21,25 @@ public class UsuarioDAO {
     private Conexion conn = new Conexion();
 
     public Usuario getUsuarios(String usuario, String password) {
-        
+
+        Usuario user = new Usuario();
+
         Statement st;
         ResultSet rs;
-        Usuario user = new Usuario();
+
         try {
             st = conn.getCon().createStatement();
-            rs = st.executeQuery("Select * from usuario where usuario='" +usuario +"' and password='"+password+"'");
-            //System.out.println("Select * from usuario where usuario='" + usuario + " and password="+password+"'");
+            String sql = "select usuario, password from usuario where usuario = '" + usuario + "' and password = '" + password + "';";
+            rs = st.executeQuery(sql);
+//            rs = st.executeQuery("Select * from usuario where usuario='" +usuario +"' and password='"+password+"'");
+            System.out.println(sql);
+
             while (rs.next()) {
-                
-                user = new Usuario(rs.getInt("ID_USUARIO"), rs.getString("USUARIO"), rs.getString("PASSWORD"), rs.getString("PERFIL"));
-                System.out.println(user);
+
+                user = new Usuario(rs.getString("usuario"), rs.getString("password"));
+
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -45,4 +51,5 @@ public class UsuarioDAO {
         }
         return user;
     }
+
 }
